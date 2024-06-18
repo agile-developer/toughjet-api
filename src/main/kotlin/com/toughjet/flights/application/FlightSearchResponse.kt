@@ -1,5 +1,6 @@
 package com.toughjet.flights.application
 
+import com.toughjet.flights.domain.Airport
 import com.toughjet.flights.domain.Flight
 import java.math.BigDecimal
 import java.time.Instant
@@ -10,8 +11,8 @@ data class FlightSearchResponse(
     val basePrice: BigDecimal,
     val tax: BigDecimal,
     val discount: String,
-    val departureAirportName: String,
-    val arrivalAirportName: String,
+    val departureAirportName: Airport,
+    val arrivalAirportName: Airport,
     val outboundDateTime: Instant,
     val inboundDateTime: Instant
 ) {

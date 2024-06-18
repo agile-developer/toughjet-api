@@ -1,5 +1,6 @@
 package com.toughjet.flights.infra
 
+import com.toughjet.flights.domain.Airport
 import com.toughjet.flights.domain.Flight
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -29,8 +30,8 @@ class FlightRepositoryImpl(
                     rs.getInt("id"),
                     rs.getString("carrier"),
                     rs.getLong("base_price_in_pence"),
-                    rs.getString("departure_airport_name"),
-                    rs.getString("arrival_airport_name"),
+                    Airport.valueOf(rs.getString("departure_airport_name")),
+                    Airport.valueOf(rs.getString("arrival_airport_name")),
                     rs.getTimestamp("outbound_date_time").toLocalDateTime(),
                     rs.getTimestamp("inbound_date_time").toLocalDateTime(),
                     rs.getInt("seats_available")
