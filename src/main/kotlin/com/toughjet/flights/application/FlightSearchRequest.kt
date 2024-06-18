@@ -1,7 +1,5 @@
 package com.toughjet.flights.application
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import java.time.Clock
 import java.time.LocalDate
 
 data class FlightSearchRequest(
@@ -10,8 +8,6 @@ data class FlightSearchRequest(
     val outboundDate: LocalDate,
     val inboundDate: LocalDate,
     val numberOfAdults: Int,
-    @JsonIgnore
-    val clock: Clock = Clock.systemUTC()
 ) {
     fun validate() {
         val validationErrors = mutableListOf<String>()
@@ -21,10 +17,10 @@ data class FlightSearchRequest(
         if (to.isBlank() || to.length != 3) {
             validationErrors.add("Destination is invalid")
         }
-        if (outboundDate.isBefore(LocalDate.now(clock))) {
+        if (outboundDate.isBefore(LocalDate.now())) {
             validationErrors.add("Departure date cannot be in the past")
         }
-        if (inboundDate.isBefore(LocalDate.now(clock))) {
+        if (inboundDate.isBefore(LocalDate.now())) {
             validationErrors.add("Return date cannot be in the past")
         }
         if (inboundDate.isBefore(outboundDate)) {
